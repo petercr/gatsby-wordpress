@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 
@@ -10,8 +10,10 @@ export default function Home({ data }) {
       <h1>My WordPress Blog</h1>
       <h4>Posts</h4>
       {data.allWpPost.nodes.map((node) => (
-        <div>
-          <p>{node.title}</p>
+        <div key={node.slug}>
+          <Link to={node.slug}>
+            <p>{node.title}</p>
+          </Link>
           <div dangerouslySetInnerHTML={{ __html: node.excerpt }} />
         </div>
       ))}
